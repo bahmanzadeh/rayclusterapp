@@ -1,0 +1,25 @@
+# Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+*.env
+.env
+venv/
+build/
+dist/
+*.egg-info/
+
+# Docker
+*.log
+
+# Helm
+*.tgz
+rayclusterapp/charts/
+
+# VSCode
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db

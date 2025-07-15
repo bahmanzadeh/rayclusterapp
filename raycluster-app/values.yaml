@@ -1,0 +1,36 @@
+ray-cluster:
+  rayVersion: "2.46.0"
+
+  head:
+    image:
+      repository: rezabah/rayclusterapp
+      tag: "0.1.0"
+    resources:
+      limits:
+        cpu: "2"
+        memory: "2Gi"
+        nvidia.com/gpu: 0
+    rayStartParams:
+      dashboard-host: "0.0.0.0"
+      metrics-export-port: "9090"
+
+  workerGroups:
+    - groupName: worker-group
+      replicas: 4
+      image:
+        repository: rezabah/rayclusterapp
+        tag: "0.1.0"
+      resources:
+        limits:
+          cpu: "4"
+          memory: "4Gi"
+          nvidia.com/gpu: 0
+      rayStartParams: {}
+
+driverJob:
+  enabled: true
+  image: rezabah/rayclusterapp:0.1.0
+  script: train.py
+  env:
+    - name: USE_GPU
+      value: "false"
