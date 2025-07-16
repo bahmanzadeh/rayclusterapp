@@ -10,12 +10,18 @@ spec:
       containers:
         - name: driver
           image: {{ .Values.driverJob.image }}
+          imagePullPolicy: Always
+          resources:
+            limits:
+              cpu: {{ .Values.driverJob.resources.limits.cpu | quote }}
+              memory: {{ .Values.driverJob.resources.limits.memory | quote }}
           command:
             - "python"
             - "/app/{{ .Values.driverJob.script }}"
           env:
-            {{- range .Values.driverJob.env }}
-            - name: {{ .name }}
-              value: "{{ .value }}"
-            {{- end }}
+            - name: RAY_HEAD_SERVICE
+              value: "{{ .Values.nameOverride | default .Release.Name }}-head-svc.{{ .Release.Namespace }}.svc:10001"
+          {{- with .Values.driverJob.env }}
+          {{- toYaml . | nindent 12 }}
+          {{- end }}
 {{- end }}

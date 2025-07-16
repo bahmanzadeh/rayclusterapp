@@ -1,4 +1,4 @@
-FROM rayproject/ray:2.10.0
+FROM rayproject/ray:nightly-py39-cpu
 
 # Optional: Install GPU runtime (CUDA, torch)
 # RUN pip install torch 

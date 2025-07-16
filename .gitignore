@@ -15,7 +15,8 @@ dist/
 
 # Helm
 *.tgz
-rayclusterapp/charts/
+raycluster-app/charts/
+raycluster-app/*.lock
 
 # VSCode
 .vscode/

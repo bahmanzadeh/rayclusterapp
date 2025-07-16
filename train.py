@@ -2,7 +2,8 @@ import ray
 import os
 import time
 
-ray.init(address="auto")
+address = os.environ["RAY_HEAD_SERVICE"]
+ray.init(address=f"ray://{address}")
 
 USE_GPU = os.getenv("USE_GPU", "false").lower() == "true"
 
