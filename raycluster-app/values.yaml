@@ -5,11 +5,13 @@ ray-cluster:
     pullPolicy: Always
   nameOverride: "rayapp1"
   head:
+    # you can find out the Ray version by running this command:
+    # docker run --rm rezabah/rayclusterapp:0.1.0 python -c "import ray; print(ray.__version__)"
     rayVersion: 3.0.0.dev0
     image:
       repository: rezabah/rayclusterapp
       tag: "0.1.0"
-      imagePullPolicy: Always
+      pullPolicy: Always
     resources:
       limits:
         cpu: "2"
@@ -32,7 +34,7 @@ ray-cluster:
     image:
       repository: rezabah/rayclusterapp
       tag: "0.1.0"
-      imagePullPolicy: Always
+      pullPolicy: Always
     rayStartParams: {}
 
 driverJob:
